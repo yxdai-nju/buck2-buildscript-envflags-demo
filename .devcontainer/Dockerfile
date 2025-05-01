@@ -22,19 +22,23 @@ USER $USERNAME
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain nightly-2025-02-16 -y
 ENV PATH="/home/$USERNAME/.cargo/bin:$PATH"
 
+# Install NativeLink with Rust nightly-2025-04-03 toolchain (as in NativeLink `MODULE.bazel`)
+RUN cargo +nightly-2025-04-03 install --git https://github.com/TraceMachina/nativelink.git --rev a0c5db0 nativelink
+
 # Install Buck2 (PR facebook/buck2#929)
-RUN cargo +nightly-2025-02-16 install --git https://github.com/yxdai-nju/buck2.git --rev 7cda182 buck2
+RUN cargo +nightly-2025-02-16 install --git https://github.com/yxdai-nju/buck2.git --rev 86dc91e buck2
 
 # Install Reindeer (PR facebookincubator/reindeer#74)
-RUN cargo +nightly-2025-02-16 install --git https://github.com/yxdai-nju/reindeer.git --rev c3fbe53 reindeer
+RUN cargo +nightly-2025-02-16 install --git https://github.com/yxdai-nju/reindeer.git --rev 02a28ae reindeer
 
 # Install buildifier
 RUN go install github.com/bazelbuild/buildtools/buildifier@latest
 ENV PATH="$PATH:/usr/local/go/bin"
 
-# Create and set permissions for workspace directory
+# Create and set permissions for workspace directory and NativeLink storage directory
 USER root
 RUN mkdir -p /workspace && chown $USERNAME:$USERNAME /workspace
+RUN mkdir -p /tmp/nativelink && chown $USERNAME:$USERNAME /tmp/nativelink
 USER $USERNAME
 
 WORKDIR /workspace

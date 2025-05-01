@@ -9,7 +9,10 @@
     },
     "workspaceFolder": "/workspace",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-    "mounts": [],
+    "mounts": [
+        // Uncomment the following line to mount local prelude into dev container
+        // "source=/path/to/local/prelude,target=/workspace/prelude,type=bind"
+    ],
     "remoteUser": "rust",
     "customizations": {
         "vscode": {
@@ -19,5 +22,7 @@
                 "tamasfe.even-better-toml"
             ]
         }
-    }
+    },
+    // Start NativeLink after dev container starts
+    "postStartCommand": "nativelink /workspace/.devcontainer/nativelink_config.json5"
 }

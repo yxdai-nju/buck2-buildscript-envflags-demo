@@ -1,0 +1,16 @@
+load(":defs.bzl", "extended_execution_platform", "execution_platforms")
+
+execution_platforms(
+    name = "platforms",
+    platforms = [
+        ":default",
+    ],
+    visibility = ["PUBLIC"],
+)
+
+extended_execution_platform(
+    name = "default",
+    base_platform = "prelude//platforms:default",
+    constraint_values = [],
+    visibility = ["PUBLIC"],
+)

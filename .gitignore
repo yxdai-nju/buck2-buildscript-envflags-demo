@@ -1,5 +1,6 @@
 ## Buck2
 /buck-out/
+/prelude
 
 ## Cargo
 target/
