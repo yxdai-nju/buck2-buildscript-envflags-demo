@@ -1,0 +1,377 @@
+#---------------------------------------------------------------------------#
+# Generated with Reindeer
+# Do not edit by hand.
+#---------------------------------------------------------------------------#
+alias(
+    name = "my_bin",
+    actual = ":my_bin-0.0.0-my_bin",
+    visibility = ["PUBLIC"],
+)
+
+load("@prelude//rust:cargo_buildscript.bzl", "buildscript_run")
+load("@prelude//rust:cargo_package.bzl", "cargo")
+
+http_archive(
+    name = "cc-1.2.20.crate",
+    sha256 = "04da6a0d40b948dfc4fa8f5bbf402b0fc1a64a28dbf7d12ffd683550f2c1b63a",
+    strip_prefix = "cc-1.2.20",
+    urls = ["https://static.crates.io/crates/cc/1.2.20/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "cc-1.2.20",
+    srcs = [":cc-1.2.20.crate"],
+    crate = "cc",
+    crate_root = "cc-1.2.20.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+    deps = [":shlex-1.3.0"],
+)
+
+http_archive(
+    name = "cfg-if-1.0.0.crate",
+    sha256 = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd",
+    strip_prefix = "cfg-if-1.0.0",
+    urls = ["https://static.crates.io/crates/cfg-if/1.0.0/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "cfg-if-1.0.0",
+    srcs = [":cfg-if-1.0.0.crate"],
+    crate = "cfg_if",
+    crate_root = "cfg-if-1.0.0.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+)
+
+http_archive(
+    name = "getrandom-0.2.16.crate",
+    sha256 = "335ff9f135e4384c8150d6f27c6daed433577f86b4750418338c01a1a2528592",
+    strip_prefix = "getrandom-0.2.16",
+    urls = ["https://static.crates.io/crates/getrandom/0.2.16/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "getrandom-0.2.16",
+    srcs = [":getrandom-0.2.16.crate"],
+    crate = "getrandom",
+    crate_root = "getrandom-0.2.16.crate/src/lib.rs",
+    edition = "2018",
+    platform = {
+        "linux-arm64": dict(
+            deps = [":libc-0.2.172"],
+        ),
+        "linux-x86_64": dict(
+            deps = [":libc-0.2.172"],
+        ),
+        "macos-arm64": dict(
+            deps = [":libc-0.2.172"],
+        ),
+        "macos-x86_64": dict(
+            deps = [":libc-0.2.172"],
+        ),
+    },
+    visibility = [],
+    deps = [":cfg-if-1.0.0"],
+)
+
+http_archive(
+    name = "libc-0.2.172.crate",
+    sha256 = "d750af042f7ef4f724306de029d18836c26c1765a54a6a3f094cbd23a7267ffa",
+    strip_prefix = "libc-0.2.172",
+    urls = ["https://static.crates.io/crates/libc/0.2.172/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "libc-0.2.172",
+    srcs = [":libc-0.2.172.crate"],
+    crate = "libc",
+    crate_root = "libc-0.2.172.crate/src/lib.rs",
+    edition = "2021",
+    env = {
+        "OUT_DIR": "$(location :libc-0.2.172-build-script-run[out_dir])",
+    },
+    env_flags = ["@$(location :libc-0.2.172-build-script-run[env_flags])"],
+    rustc_flags = ["@$(location :libc-0.2.172-build-script-run[rustc_flags])"],
+    visibility = [],
+)
+
+cargo.rust_binary(
+    name = "libc-0.2.172-build-script-build",
+    srcs = [":libc-0.2.172.crate"],
+    crate = "build_script_build",
+    crate_root = "libc-0.2.172.crate/build.rs",
+    edition = "2021",
+    visibility = [],
+)
+
+buildscript_run(
+    name = "libc-0.2.172-build-script-run",
+    package_name = "libc",
+    buildscript_rule = ":libc-0.2.172-build-script-build",
+    version = "0.2.172",
+)
+
+http_archive(
+    name = "mime-0.3.17.crate",
+    sha256 = "6877bb514081ee2a7ff5ef9de3281f14a4dd4bceac4c09388074a6b5df8a139a",
+    strip_prefix = "mime-0.3.17",
+    urls = ["https://static.crates.io/crates/mime/0.3.17/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "mime-0.3.17",
+    srcs = [":mime-0.3.17.crate"],
+    crate = "mime",
+    crate_root = "mime-0.3.17.crate/src/lib.rs",
+    edition = "2015",
+    visibility = [],
+)
+
+alias(
+    name = "mime_guess",
+    actual = ":mime_guess-2.0.5",
+    visibility = ["PUBLIC"],
+)
+
+http_archive(
+    name = "mime_guess-2.0.5.crate",
+    sha256 = "f7c44f8e672c00fe5308fa235f821cb4198414e1c77935c1ab6948d3fd78550e",
+    strip_prefix = "mime_guess-2.0.5",
+    urls = ["https://static.crates.io/crates/mime_guess/2.0.5/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "mime_guess-2.0.5",
+    srcs = [":mime_guess-2.0.5.crate"],
+    crate = "mime_guess",
+    crate_root = "mime_guess-2.0.5.crate/src/lib.rs",
+    edition = "2015",
+    env = {
+        "OUT_DIR": "$(location :mime_guess-2.0.5-build-script-run[out_dir])",
+    },
+    env_flags = ["@$(location :mime_guess-2.0.5-build-script-run[env_flags])"],
+    features = [
+        "default",
+        "rev-mappings",
+    ],
+    rustc_flags = ["@$(location :mime_guess-2.0.5-build-script-run[rustc_flags])"],
+    visibility = [],
+    deps = [
+        ":mime-0.3.17",
+        ":unicase-2.8.1",
+    ],
+)
+
+cargo.rust_binary(
+    name = "mime_guess-2.0.5-build-script-build",
+    srcs = [":mime_guess-2.0.5.crate"],
+    crate = "build_script_build",
+    crate_root = "mime_guess-2.0.5.crate/build.rs",
+    edition = "2015",
+    features = [
+        "default",
+        "rev-mappings",
+    ],
+    visibility = [],
+    deps = [":unicase-2.8.1"],
+)
+
+buildscript_run(
+    name = "mime_guess-2.0.5-build-script-run",
+    package_name = "mime_guess",
+    buildscript_rule = ":mime_guess-2.0.5-build-script-build",
+    features = [
+        "default",
+        "rev-mappings",
+    ],
+    version = "2.0.5",
+)
+
+cargo.rust_binary(
+    name = "my_bin-0.0.0-my_bin",
+    srcs = ["crates/my_bin/src/bin/my_bin.rs"],
+    crate = "my_bin",
+    crate_root = "crates/my_bin/src/bin/my_bin.rs",
+    edition = "2024",
+    visibility = [],
+    deps = [
+        ":mime_guess-2.0.5",
+        ":ring-0.17.8",
+    ],
+)
+
+alias(
+    name = "ring",
+    actual = ":ring-0.17.8",
+    visibility = ["PUBLIC"],
+)
+
+http_archive(
+    name = "ring-0.17.8.crate",
+    sha256 = "c17fa4cb658e3583423e915b9f3acc01cceaee1860e33d59ebae66adc3a2dc0d",
+    strip_prefix = "ring-0.17.8",
+    urls = ["https://static.crates.io/crates/ring/0.17.8/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "ring-0.17.8",
+    srcs = [":ring-0.17.8.crate"],
+    crate = "ring",
+    crate_root = "ring-0.17.8.crate/src/lib.rs",
+    edition = "2021",
+    env = {
+        "OUT_DIR": "$(location :ring-0.17.8-build-script-run[out_dir])",
+    },
+    env_flags = ["@$(location :ring-0.17.8-build-script-run[env_flags])"],
+    features = [
+        "alloc",
+        "default",
+        "dev_urandom_fallback",
+    ],
+    platform = {
+        "linux-arm64": dict(
+            deps = [
+                ":libc-0.2.172",
+                ":spin-0.9.8",
+            ],
+        ),
+        "linux-x86_64": dict(
+            deps = [":spin-0.9.8"],
+        ),
+        "macos-arm64": dict(
+            deps = [":spin-0.9.8"],
+        ),
+        "macos-x86_64": dict(
+            deps = [":spin-0.9.8"],
+        ),
+        "windows-gnu": dict(
+            deps = [":spin-0.9.8"],
+        ),
+        "windows-msvc": dict(
+            deps = [":spin-0.9.8"],
+        ),
+    },
+    rustc_flags = [
+        "-Lnative=$(location :ring-0.17.8-build-script-run[out_dir])",
+        "-lstatic=ring_core_0_17_8_",
+        "@$(location :ring-0.17.8-build-script-run[rustc_flags])",
+    ],
+    visibility = [],
+    deps = [
+        ":cfg-if-1.0.0",
+        ":getrandom-0.2.16",
+        ":untrusted-0.9.0",
+    ],
+)
+
+cargo.rust_binary(
+    name = "ring-0.17.8-build-script-build",
+    srcs = [":ring-0.17.8.crate"],
+    crate = "build_script_build",
+    crate_root = "ring-0.17.8.crate/build.rs",
+    edition = "2021",
+    features = [
+        "alloc",
+        "default",
+        "dev_urandom_fallback",
+    ],
+    visibility = [],
+    deps = [":cc-1.2.20"],
+)
+
+buildscript_run(
+    name = "ring-0.17.8-build-script-run",
+    package_name = "ring",
+    buildscript_rule = ":ring-0.17.8-build-script-build",
+    env = {
+        "CARGO_MANIFEST_LINKS": "ring_core_0_17_8",
+        "OPT_LEVEL": "3",
+    },
+    features = [
+        "alloc",
+        "default",
+        "dev_urandom_fallback",
+    ],
+    version = "0.17.8",
+)
+
+http_archive(
+    name = "shlex-1.3.0.crate",
+    sha256 = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64",
+    strip_prefix = "shlex-1.3.0",
+    urls = ["https://static.crates.io/crates/shlex/1.3.0/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "shlex-1.3.0",
+    srcs = [":shlex-1.3.0.crate"],
+    crate = "shlex",
+    crate_root = "shlex-1.3.0.crate/src/lib.rs",
+    edition = "2015",
+    features = [
+        "default",
+        "std",
+    ],
+    visibility = [],
+)
+
+http_archive(
+    name = "spin-0.9.8.crate",
+    sha256 = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67",
+    strip_prefix = "spin-0.9.8",
+    urls = ["https://static.crates.io/crates/spin/0.9.8/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "spin-0.9.8",
+    srcs = [":spin-0.9.8.crate"],
+    crate = "spin",
+    crate_root = "spin-0.9.8.crate/src/lib.rs",
+    edition = "2015",
+    features = ["once"],
+    visibility = [],
+)
+
+http_archive(
+    name = "unicase-2.8.1.crate",
+    sha256 = "75b844d17643ee918803943289730bec8aac480150456169e647ed0b576ba539",
+    strip_prefix = "unicase-2.8.1",
+    urls = ["https://static.crates.io/crates/unicase/2.8.1/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "unicase-2.8.1",
+    srcs = [":unicase-2.8.1.crate"],
+    crate = "unicase",
+    crate_root = "unicase-2.8.1.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+)
+
+http_archive(
+    name = "untrusted-0.9.0.crate",
+    sha256 = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1",
+    strip_prefix = "untrusted-0.9.0",
+    urls = ["https://static.crates.io/crates/untrusted/0.9.0/download"],
+    visibility = [],
+)
+
+cargo.rust_library(
+    name = "untrusted-0.9.0",
+    srcs = [":untrusted-0.9.0.crate"],
+    crate = "untrusted",
+    crate_root = "untrusted-0.9.0.crate/src/lib.rs",
+    edition = "2018",
+    visibility = [],
+)

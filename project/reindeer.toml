@@ -1,0 +1,18 @@
+vendor = false
+
+manifest_path = "Cargo.toml"
+third_party_dir = "."
+include_workspace_members = true
+
+[buck]
+generated_file_header = """
+#---------------------------------------------------------------------------#
+# Generated with Reindeer
+# Do not edit by hand.
+#---------------------------------------------------------------------------#
+alias(
+    name = "my_bin",
+    actual = ":my_bin-0.0.0-my_bin",
+    visibility = ["PUBLIC"],
+)
+"""

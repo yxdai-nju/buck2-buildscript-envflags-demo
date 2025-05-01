@@ -1,0 +1,23 @@
+{
+    "name": "Buck2-Reindeer Demo",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "args": {
+            "USERNAME": "rust", // Used for creating "/home/$USERNAME" directory within container
+            "USER_UID": "1000"
+        }
+    },
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "mounts": [],
+    "remoteUser": "rust",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bazelbuild.vscode-bazel",
+                "rust-lang.rust-analyzer@prerelease",
+                "tamasfe.even-better-toml"
+            ]
+        }
+    }
+}

@@ -1,0 +1,10 @@
+[workspace]
+
+members = ["crates/my_bin"]
+
+[workspace.dependencies]
+mime_guess = "=2.0.5"
+ring = "=0.17.8"
+
+# Local patches - typically git references
+[patch.crates-io]

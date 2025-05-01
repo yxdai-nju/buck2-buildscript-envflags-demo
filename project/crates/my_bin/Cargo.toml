@@ -1,0 +1,13 @@
+[package]
+name = "my_bin"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "my_bin"
+path = "src/bin/my_bin.rs"
+
+[dependencies]
+mime_guess = { workspace = true }
+ring = { workspace = true }
